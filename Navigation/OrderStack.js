@@ -2,10 +2,6 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 
 import Cart from "../Components/CoffeeCart";
 import OrderHistory from "../Components/OrderHistory";
-import List from "../Components/CoffeeList";
-import Detail from "../Components/CoffeeDetail";
-import Login from "../Components/Login";
-import Home from "../Components/HomePage";
 
 const OrderStack = createStackNavigator(
   {

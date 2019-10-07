@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import { addItemToCart } from "../../store/actions/coffeeActions";
+
 // NativeBase Components
 import {
   Thumbnail,
@@ -44,6 +46,14 @@ class CoffeeDetail extends Component {
     this.setState({
       option: value
     });
+  };
+
+  handlePress = () => {
+    const newItem = {
+      drink: this.state.drink,
+      option: this.state.option
+    };
+    this.props.addItemToCart(newItem);
   };
 
   render() {
@@ -93,7 +103,7 @@ class CoffeeDetail extends Component {
               </Picker>
             </Body>
           </ListItem>
-          <Button full danger>
+          <Button full danger onPress={this.handlePress}>
             <Text>Add</Text>
           </Button>
         </List>
@@ -102,8 +112,17 @@ class CoffeeDetail extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    addItemToCart: item => dispatch(addItemToCart(item))
+  };
+};
+
 const mapStateToProps = state => ({
   coffeeReducer: state.coffeeReducer
 });
 
-export default connect(mapStateToProps)(CoffeeDetail);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CoffeeDetail);
